@@ -16,4 +16,4 @@ RUN chmod a+x ./update_upnp
 
 # on start, open needed ports
 #ENTRYPOINT bash update_upnp 80 TCP && bash update_upnp 8080 TCP
-ENTRYPOINT watch -n 10 update_upnp
+ENTRYPOINT watch -n 21600 /scripts/update_upnp.sh
