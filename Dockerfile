@@ -1,6 +1,7 @@
 FROM alpine:latest
 
 RUN apk update
+RUN apk add --no-cache tzdata
 RUN apk add bash
 RUN apk add miniupnpc
 
