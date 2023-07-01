@@ -9,11 +9,6 @@ WORKDIR /scripts
 COPY update_upnp.sh .
 RUN chmod a+x ./update_upnp.sh
 
-# cron to update each UPnP entries every 10 minutes
-#RUN echo -e "*/240\t*\t*\t*\t*\tbash /scripts/update_upnp.sh 8080 TCP" >> /etc/crontabs/root
-
-#CMD ["crond", "-f"]
-
-# on start, open needed ports
-#ENTRYPOINT bash update_upnp 80 TCP && bash update_upnp 8080 TCP
-ENTRYPOINT watch -n 21600 /scripts/update_upnp.sh
+# Run update_upnp.sh script with a 6hr interval by default at startup
+ENV RUNTIME 21600
+ENTRYPOINT watch -n $RUNTIME /scripts/update_upnp.sh
